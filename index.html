@@ -7,6 +7,17 @@
 <title>Code Academy</title>
 
 <style>
+:root {
+    --bg: #080d19;
+    --panel: #111a2c;
+    --panel2: #18243a;
+    --text: #f4f7ff;
+    --muted: #9ba9c1;
+    --blue: #4788ff;
+    --green: #19c784;
+    --red: #ff4355;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,161 +25,539 @@
 }
 
 body {
+    background: var(--bg);
+    color: var(--text);
     font-family: Arial, sans-serif;
-    background: #f4f6fa;
-    color: #222;
-    line-height: 1.7;
+    min-height: 100vh;
 }
 
-header {
-    background: #202b45;
-    color: white;
-    text-align: center;
-    padding: 35px 15px;
-}
-
-header h1 {
-    font-size: 34px;
-}
-
-nav {
-    background: #344563;
-    padding: 15px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 10px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #70d6ff;
-}
-
-.container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 15px;
-}
-
-.lesson, .practice, .quiz {
-    background: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #00000010;
-}
-
-h2 {
-    color: #3155a5;
-    margin-bottom: 15px;
-}
-
-h3 {
-    margin-top: 15px;
-}
-
-pre {
-    background: #202b45;
-    color: #8be9fd;
-    padding: 18px;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.example {
-    background: #eaf1ff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
+button, textarea, select {
+    font: inherit;
 }
 
 button {
-    background: #3155a5;
-    color: white;
-    border: none;
-    padding: 11px 20px;
-    border-radius: 7px;
     cursor: pointer;
-    margin-top: 12px;
-    font-size: 15px;
 }
 
-button:hover {
-    background: #203c7d;
+/* LOADING SCREEN */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #080d19;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    animation: loaderOut 0.8s ease 2.2s forwards;
 }
 
-.done {
-    background: #159957;
+.logo {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -2px;
 }
 
-.done:hover {
-    background: #107743;
+.logo span {
+    color: var(--blue);
 }
 
-textarea {
-    width: 100%;
-    min-height: 110px;
-    padding: 12px;
-    margin-top: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 14px;
-}
-
-.progress {
-    background: #ddd;
-    height: 14px;
+.loader-line {
+    width: 180px;
+    height: 4px;
+    background: #26334b;
     border-radius: 20px;
-    margin: 15px 0;
     overflow: hidden;
 }
 
-.progress-bar {
+.loader-line div {
     height: 100%;
-    width: 0%;
-    background: #159957;
-    transition: width 0.3s;
+    background: var(--blue);
+    animation: loading 2s ease forwards;
 }
 
-.question {
-    background: #f4f6fa;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 8px;
+@keyframes loading {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.question label {
-    display: block;
-    margin: 8px 0;
-    cursor: pointer;
+@keyframes loaderOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
-#result {
-    margin-top: 15px;
+/* HEADER */
+
+header {
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #202c40;
+}
+
+.brand {
+    font-size: 23px;
     font-weight: bold;
 }
 
-footer {
-    background: #202b45;
+.brand span {
+    color: var(--blue);
+}
+
+.header-right {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* MAIN */
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+.welcome {
+    margin-bottom: 35px;
+}
+
+.welcome h1 {
+    font-size: clamp(30px, 5vw, 45px);
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: var(--muted);
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.menu-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #ffffff15;
+    text-align: left;
     color: white;
-    text-align: center;
+    transition: .3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    border-color: #ffffff60;
+}
+
+.menu-card .symbol {
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+.menu-card h2 {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.menu-card p {
+    color: #ffffffbd;
+    font-size: 14px;
+}
+
+.html-card {
+    background: linear-gradient(135deg,#164f9b,#172a53);
+}
+
+.css-card {
+    background: linear-gradient(135deg,#7138a9,#35245f);
+}
+
+.java-card {
+    background: linear-gradient(135deg,#a6531d,#582b19);
+}
+
+.test-card {
+    background: linear-gradient(135deg,#a42638,#4a1727);
+}
+
+.practice-card {
+    background: linear-gradient(135deg,#087b68,#123d42);
+    grid-column: span 2;
+}
+
+/* SECTIONS */
+
+.page {
+    display: none;
+    animation: appear .35s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.back {
+    background: var(--panel2);
+    color: white;
+    border: 1px solid #34435b;
+    padding: 10px 18px;
+    border-radius: 9px;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* LESSON CARDS */
+
+.topics {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 14px;
+}
+
+.topic {
+    background: var(--panel);
+    border: 1px solid #26354e;
+    border-radius: 13px;
+    padding: 19px;
+    color: white;
+    text-align: left;
+    min-height: 125px;
+    transition: .25s;
+}
+
+.topic:hover {
+    background: var(--panel2);
+    border-color: var(--blue);
+    transform: translateY(-4px);
+}
+
+.topic small {
+    color: var(--blue);
+}
+
+.topic h3 {
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+/* OVERLAY */
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: #000b;
+    backdrop-filter: blur(9px);
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: #121d31;
+    border: 1px solid #34435b;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: appear .3s;
+}
+
+.modal h2 {
+    margin-bottom: 15px;
+}
+
+.modal p {
+    color: #c1cce0;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.code-example {
+    background: #080d19;
+    color: #7ce6c0;
+    padding: 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin: 15px 0;
+    font-family: monospace;
+}
+
+.primary {
+    background: var(--blue);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+}
+
+.close {
+    float: right;
+    background: #29364d;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 8px;
+}
+
+/* TESTING */
+
+.test-options {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.test-option {
+    padding: 25px;
+    background: var(--panel);
+    color: white;
+    border: 1px solid #34435b;
+    border-radius: 13px;
+    text-align: left;
+}
+
+.test-option:hover {
+    border-color: var(--red);
+    background: #351b2b;
+}
+
+.test-option h3 {
+    margin-bottom: 8px;
+}
+
+.challenge {
+    background: #170e19;
+    border: 1px solid #812b42;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.challenge h2 {
+    color: #ff6574;
+}
+
+.test-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.timer {
+    color: #ff6979;
+    font-weight: bold;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    margin-top: 10px;
+    background: #202238;
+    border: 1px solid #3d4058;
+    color: white;
+    border-radius: 9px;
+}
+
+.answer.selected {
+    border-color: #ff5367;
+    background: #43202e;
+}
+
+.test-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* RESULT */
+
+.result-card {
+    background: var(--panel);
+    border: 1px solid #34435b;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.score {
+    font-size: 45px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.review-item {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 12px;
+    background: #1b293b;
+}
+
+.correct {
+    border-left: 4px solid var(--green);
+}
+
+.wrong {
+    border-left: 4px solid var(--red);
+}
+
+/* PRACTICE EDITOR */
+
+.editor-window {
+    background: #101827;
+    border: 1px solid #33415a;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.editor-header {
+    background: #202c41;
+    padding: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.editor-header select {
+    background: #111a2c;
+    color: white;
+    border: 1px solid #47546c;
+    padding: 9px;
+    border-radius: 7px;
+}
+
+.run {
+    background: #16a66c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-weight: bold;
+}
+
+.run:hover {
+    background: #0c8554;
+}
+
+.editor-area {
+    width: 100%;
+    min-height: 300px;
+    resize: vertical;
+    border: none;
+    outline: none;
+    padding: 20px;
+    background: #0b1220;
+    color: #a8e8d0;
+    font-family: Consolas, monospace;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.output-header {
+    background: #202c41;
+    padding: 12px 16px;
+}
+
+#output {
+    display: none;
+    width: 100%;
+    height: 350px;
+    background: white;
+    border: none;
+}
+
+#javaMessage {
+    display: none;
+    padding: 20px;
+    color: #ffd68b;
+    background: #342a1c;
+}
+
+/* HISTORY */
+
+.history-item {
+    background: var(--panel);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 1px solid #29374d;
+}
+
+.empty {
+    color: var(--muted);
     padding: 20px;
 }
 
-@media(max-width: 600px) {
-    header h1 {
-        font-size: 26px;
+footer {
+    border-top: 1px solid #202c40;
+    text-align: center;
+    color: var(--muted);
+    padding: 25px;
+    margin-top: 40px;
+}
+
+@media(max-width:750px) {
+    .topics {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    nav a {
-        display: inline-block;
+    .menu {
+        grid-template-columns: 1fr;
+    }
+
+    .practice-card {
+        grid-column: span 1;
+    }
+}
+
+@media(max-width:450px) {
+    .topics {
+        grid-template-columns: 1fr;
+    }
+
+    .test-options {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 30px 14px;
     }
 }
 </style>
@@ -176,469 +565,806 @@ footer {
 
 <body>
 
+<!-- LOADING -->
+
+<div id="loader">
+    <div class="logo">CODE<span>ACADEMY</span></div>
+    <p style="color:#9ba9c1">YOUR JOURNEY STARTS HERE</p>
+    <div class="loader-line"><div></div></div>
+</div>
+
 <header>
-    <h1>Code Academy</h1>
-    <p>Learn Programming From Zero!</p>
+    <div class="brand">CODE<span>ACADEMY</span></div>
+    <div class="header-right">LEARN · PRACTICE · MASTER</div>
 </header>
 
-<nav>
-    <a href="#html">HTML</a>
-    <a href="#css">CSS</a>
-    <a href="#java">Java</a>
-    <a href="#practice">Practice</a>
-    <a href="#quiz">Quizzes</a>
-</nav>
+<main>
 
-<div class="container">
+<!-- HOME -->
 
-<!-- HTML -->
+<section class="page active" id="home">
 
-<section class="lesson" id="html">
-    <h2>1. What is HTML?</h2>
-
-    <p>
-        HTML stands for HyperText Markup Language.
-        It creates the structure of websites.
-    </p>
-
-    <h3>Example:</h3>
-
-<pre>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;My Website&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;p&gt;My first website.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre>
-
-    <div class="example">
-        <h3>Important HTML Tags</h3>
-        <p>&lt;h1&gt; = Heading</p>
-        <p>&lt;p&gt; = Paragraph</p>
-        <p>&lt;img&gt; = Image</p>
-        <p>&lt;a&gt; = Link</p>
-        <p>&lt;button&gt; = Button</p>
+    <div class="welcome">
+        <h1>Welcome to Code Academy.</h1>
+        <p>Choose your path. Learn something new. Build something amazing.</p>
     </div>
+
+    <div class="menu">
+
+        <button class="menu-card html-card" onclick="openLessons('html')">
+            <div class="symbol">🌐</div>
+            <h2>HTML</h2>
+            <p>Learn the structure of websites.</p>
+        </button>
+
+        <button class="menu-card css-card" onclick="openLessons('css')">
+            <div class="symbol">🎨</div>
+            <h2>CSS</h2>
+            <p>Design beautiful websites.</p>
+        </button>
+
+        <button class="menu-card java-card" onclick="openLessons('java')">
+            <div class="symbol">☕</div>
+            <h2>JAVA</h2>
+            <p>Understand programming logic.</p>
+        </button>
+
+        <button class="menu-card test-card" onclick="showPage('testing')">
+            <div class="symbol">⚔️</div>
+            <h2>TESTING</h2>
+            <p>Enter the challenge. Test your knowledge.</p>
+        </button>
+
+        <button class="menu-card practice-card" onclick="showPage('practice')">
+            <div class="symbol">💻</div>
+            <h2>CASUAL PRACTICE</h2>
+            <p>Open your coding playground and experiment freely.</p>
+        </button>
+
+    </div>
+
+    <br><br>
+    <button class="back" onclick="showPage('history')">
+        🏆 My Test History
+    </button>
+
 </section>
 
-<!-- CSS -->
 
-<section class="lesson" id="css">
-    <h2>2. What is CSS?</h2>
+<!-- LESSONS -->
 
-    <p>
-        CSS stands for Cascading Style Sheets.
-        It controls the appearance of websites.
-    </p>
+<section class="page" id="lessons">
 
-    <h3>Example:</h3>
+    <button class="back" onclick="showPage('home')">← Back Home</button>
 
-<pre>
-body {
-    background-color: lightblue;
-    font-family: Arial;
-}
+    <h1 class="section-title" id="lessonTitle"></h1>
+    <p class="subtitle">20 essential topics. One step at a time.</p>
 
-h1 {
-    color: blue;
-    text-align: center;
-}
-</pre>
+    <div class="topics" id="topicGrid"></div>
 
-    <div class="example">
-        <h3>Important CSS Properties</h3>
-        <p>color = Text color</p>
-        <p>background-color = Background color</p>
-        <p>font-size = Text size</p>
-        <p>margin = Outside spacing</p>
-        <p>padding = Inside spacing</p>
-        <p>border = Border around an element</p>
-    </div>
 </section>
 
-<!-- JAVA -->
 
-<section class="lesson" id="java">
-    <h2>3. What is Java?</h2>
+<!-- TEST CATEGORY -->
 
-    <p>
-        Java is a programming language used to
-        create applications and software.
-    </p>
+<section class="page" id="testing">
 
-    <h3>Example:</h3>
+    <button class="back" onclick="showPage('home')">← Back Home</button>
 
-<pre>
-public class Main {
+    <h1 class="section-title">THE CHALLENGE</h1>
+    <p class="subtitle">Choose your challenge category.</p>
 
-    public static void main(String[] args) {
+    <div class="test-options">
 
-        System.out.println("Hello World!");
+        <button class="test-option" onclick="startTest('html')">
+            <h3>🌐 HTML TEST</h3>
+            <p>Test your HTML knowledge.</p>
+        </button>
 
-    }
+        <button class="test-option" onclick="startTest('css')">
+            <h3>🎨 CSS TEST</h3>
+            <p>Test your design knowledge.</p>
+        </button>
 
-}
-</pre>
+        <button class="test-option" onclick="startTest('java')">
+            <h3>☕ JAVA TEST</h3>
+            <p>Test your programming knowledge.</p>
+        </button>
 
-    <div class="example">
-        <h3>Important Java Concepts</h3>
-        <p>int = Whole numbers</p>
-        <p>double = Decimal numbers</p>
-        <p>String = Text</p>
-        <p>if = Conditions</p>
-        <p>for = Loops</p>
-        <p>System.out.println() = Print text</p>
+        <button class="test-option" onclick="startTest('mix')">
+            <h3>⚔️ MIXED TEST</h3>
+            <p>HTML + CSS + Java. Everything together.</p>
+        </button>
+
     </div>
+
 </section>
+
+
+<!-- TEST PAGE -->
+
+<section class="page" id="challengePage">
+
+    <button class="back" onclick="leaveTest()">← Exit Test</button>
+
+    <div class="challenge">
+
+        <div class="test-top">
+            <span id="testCategory">HTML CHALLENGE</span>
+            <span class="timer" id="timer">30:00</span>
+        </div>
+
+        <h2>KNOWLEDGE CHALLENGE</h2>
+        <p id="questionNumber"></p>
+
+        <h3 id="questionText" style="margin:20px 0"></h3>
+
+        <div id="answers"></div>
+
+        <div class="test-actions">
+            <button class="back" onclick="previousQuestion()">Previous</button>
+            <button class="primary" id="nextButton" onclick="nextQuestion()">Next →</button>
+        </div>
+
+        <button class="run" style="width:100%;margin-top:25px"
+            onclick="submitTest()">SUBMIT TEST</button>
+
+    </div>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section class="page" id="results">
+
+    <button class="back" onclick="showPage('home')">← Home</button>
+
+    <h1 class="section-title">CHALLENGE RESULTS</h1>
+
+    <div class="result-card">
+        <p>Your score</p>
+        <div class="score" id="finalScore">0/30</div>
+        <h3 id="resultMessage"></h3>
+    </div>
+
+    <h2 style="margin-top:30px">Answer Review</h2>
+    <div id="review"></div>
+
+</section>
+
 
 <!-- PRACTICE -->
 
-<section class="practice" id="practice">
+<section class="page" id="practice">
 
-    <h2>4. Practice Exercises</h2>
+    <button class="back" onclick="showPage('home')">← Back Home</button>
 
-    <p>
-        Complete the following exercises.
-        You can write your solution in the text boxes.
-        When you finish, click Done!
+    <h1 class="section-title">CODING PLAYGROUND</h1>
+    <p class="subtitle">Write your code. Run it. See what happens.</p>
+
+    <div class="editor-window">
+
+        <div class="editor-header">
+
+            <select id="language" onchange="changeLanguage()">
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="java">JAVA</option>
+            </select>
+
+            <button class="run" onclick="runCode()">▶ RUN CODE</button>
+
+        </div>
+
+        <textarea id="codeEditor" class="editor-area" spellcheck="false"
+placeholder="Write your code here..."></textarea>
+
+        <div class="output-header">OUTPUT / PREVIEW</div>
+
+        <iframe id="output" sandbox="allow-scripts"></iframe>
+
+        <div id="javaMessage">
+            Java requires a Java execution environment.
+            The browser cannot directly compile Java code.
+            A secure Java backend will be added in a later version.
+        </div>
+
+    </div>
+
+    <p style="color:var(--muted);margin-top:15px">
+        Tip: Try changing the code and running it again!
     </p>
 
-    <h3>Your Progress</h3>
+</section>
 
-    <p id="progressText">0 / 6 exercises completed</p>
 
-    <div class="progress">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
+<!-- HISTORY -->
 
-    <!-- HTML PRACTICE -->
+<section class="page" id="history">
 
-    <div class="question">
-        <h3>Exercise 1 - HTML</h3>
-        <p>Create a heading that says "My First Website".</p>
+    <button class="back" onclick="showPage('home')">← Back Home</button>
 
-        <textarea placeholder="Write your HTML code here..."></textarea>
+    <h1 class="section-title">MY TEST HISTORY</h1>
+    <p class="subtitle">Your previous test results.</p>
 
-        <button class="done" onclick="completeTask(0, this)">
-            Done ✓
-        </button>
-    </div>
-
-    <div class="question">
-        <h3>Exercise 2 - HTML</h3>
-        <p>Create a paragraph that says "I love programming".</p>
-
-        <textarea placeholder="Write your HTML code here..."></textarea>
-
-        <button class="done" onclick="completeTask(1, this)">
-            Done ✓
-        </button>
-    </div>
-
-    <!-- CSS PRACTICE -->
-
-    <div class="question">
-        <h3>Exercise 3 - CSS</h3>
-        <p>Change the background color of a page to black.</p>
-
-        <textarea placeholder="Write your CSS code here..."></textarea>
-
-        <button class="done" onclick="completeTask(2, this)">
-            Done ✓
-        </button>
-    </div>
-
-    <div class="question">
-        <h3>Exercise 4 - CSS</h3>
-        <p>Make an h1 heading red and center aligned.</p>
-
-        <textarea placeholder="Write your CSS code here..."></textarea>
-
-        <button class="done" onclick="completeTask(3, this)">
-            Done ✓
-        </button>
-    </div>
-
-    <!-- JAVA PRACTICE -->
-
-    <div class="question">
-        <h3>Exercise 5 - Java</h3>
-        <p>Write a Java command that prints "Hello Student".</p>
-
-        <textarea placeholder="Write your Java code here..."></textarea>
-
-        <button class="done" onclick="completeTask(4, this)">
-            Done ✓
-        </button>
-    </div>
-
-    <div class="question">
-        <h3>Exercise 6 - Java</h3>
-        <p>Create an integer variable named age with value 16.</p>
-
-        <textarea placeholder="Write your Java code here..."></textarea>
-
-        <button class="done" onclick="completeTask(5, this)">
-            Done ✓
-        </button>
-    </div>
+    <div id="historyList"></div>
 
 </section>
 
-<!-- QUIZ -->
+</main>
 
-<section class="quiz" id="quiz">
+<!-- TOPIC OVERLAY -->
 
-    <h2>5. Programming Quiz</h2>
-
-    <p>Test what you have learned!</p>
-
-    <form id="quizForm">
-
-        <div class="question">
-            <h3>Question 1</h3>
-            <p>What does HTML do?</p>
-
-            <label>
-                <input type="radio" name="q1" value="a">
-                Creates website structure
-            </label>
-
-            <label>
-                <input type="radio" name="q1" value="b">
-                Styles websites
-            </label>
-
-            <label>
-                <input type="radio" name="q1" value="c">
-                Edits photos
-            </label>
-        </div>
-
-        <div class="question">
-            <h3>Question 2</h3>
-            <p>Which language is used to style websites?</p>
-
-            <label>
-                <input type="radio" name="q2" value="a">
-                Java
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="b">
-                CSS
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="c">
-                HTML
-            </label>
-        </div>
-
-        <div class="question">
-            <h3>Question 3</h3>
-            <p>Which command prints text in Java?</p>
-
-            <label>
-                <input type="radio" name="q3" value="a">
-                print.text()
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="b">
-                console.log()
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="c">
-                System.out.println()
-            </label>
-        </div>
-
-        <div class="question">
-            <h3>Question 4</h3>
-            <p>Which HTML tag creates a paragraph?</p>
-
-            <label>
-                <input type="radio" name="q4" value="a">
-                &lt;p&gt;
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="b">
-                &lt;h1&gt;
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="c">
-                &lt;img&gt;
-            </label>
-        </div>
-
-        <div class="question">
-            <h3>Question 5</h3>
-            <p>Which Java type stores whole numbers?</p>
-
-            <label>
-                <input type="radio" name="q5" value="a">
-                String
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="b">
-                int
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="c">
-                double
-            </label>
-        </div>
-
-        <button type="button" onclick="checkQuiz()">
-            Submit Quiz
-        </button>
-
-        <button type="reset" onclick="resetQuiz()">
-            Try Again
-        </button>
-
-    </form>
-
-    <div id="result"></div>
-
-</section>
-
-<section class="lesson">
-    <h2>Congratulations!</h2>
-    <p>
-        You have completed the basic lessons.
-        Keep practicing and become a better programmer!
-    </p>
-</section>
-
+<div class="overlay" id="topicOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeTopic()">✕</button>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <div class="code-example" id="modalCode"></div>
+        <button class="primary" onclick="closeTopic()">Got it!</button>
+    </div>
 </div>
 
-<footer>
-    <p>Code Academy © 2026</p>
-    <p>Learn Today, Build Tomorrow.</p>
-</footer>
 
 <script>
 
-// PRACTICE PROGRESS
+// PAGE NAVIGATION
 
-let completed = JSON.parse(
-    localStorage.getItem("completedTasks") || "[false,false,false,false,false,false]"
-);
+function showPage(id) {
 
-function updateProgress() {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
 
-    let count = completed.filter(Boolean).length;
+    document.getElementById(id).classList.add("active");
 
-    document.getElementById("progressText").innerText =
-        count + " / 6 exercises completed";
+    window.scrollTo(0,0);
 
-    document.getElementById("progressBar").style.width =
-        (count / 6 * 100) + "%";
+    if(id === "history") renderHistory();
 }
 
-function completeTask(index, button) {
 
-    completed[index] = !completed[index];
+// LESSON DATA
 
-    localStorage.setItem(
-        "completedTasks",
-        JSON.stringify(completed)
-    );
+const lessons = {
 
-    updateButtonStates();
-    updateProgress();
-}
+html: [
+["HTML Document","The basic structure of every HTML page.","<!DOCTYPE html>\n<html>\n<head>\n<title>My Page</title>\n</head>\n<body>\n</body>\n</html>"],
+["Headings","HTML has six heading levels, from h1 to h6.","<h1>Main Heading</h1>\n<h2>Subheading</h2>"],
+["Paragraphs","The p element creates a paragraph.","<p>This is a paragraph.</p>"],
+["Line Breaks","The br element starts a new line.","Hello<br>World"],
+["Links","The a element links to another page.","<a href='https://example.com'>Visit</a>"],
+["Images","The img element displays an image.","<img src='photo.jpg' alt='Photo'>"],
+["Lists","Create ordered and unordered lists.","<ul>\n<li>Apple</li>\n<li>Orange</li>\n</ul>"],
+["Ordered Lists","Use ol to create numbered lists.","<ol>\n<li>First</li>\n<li>Second</li>\n</ol>"],
+["Buttons","The button element creates a clickable button.","<button>Click Me</button>"],
+["Divisions","A div groups HTML elements together.","<div>\n<p>Hello</p>\n</div>"],
+["Spans","A span groups small inline content.","<span>Hello</span>"],
+["Tables","Tables display information in rows and columns.","<table>\n<tr><th>Name</th></tr>\n<tr><td>Ahmed</td></tr>\n</table>"],
+["Forms","Forms collect information from users.","<form>\n<input type='text'>\n<button>Send</button>\n</form>"],
+["Input Types","Inputs accept text, numbers and other values.","<input type='text'>\n<input type='number'>"],
+["Labels","Labels describe form inputs.","<label for='name'>Name</label>\n<input id='name'>"],
+["Semantic HTML","Semantic tags describe the purpose of content.","<header>Header</header>\n<main>Content</main>\n<footer>Footer</footer>"],
+["Audio","The audio element adds sound.","<audio controls src='sound.mp3'></audio>"],
+["Video","The video element displays video.","<video controls width='300' src='video.mp4'></video>"],
+["Comments","Comments explain code and are not displayed.","<!-- This is a comment -->"],
+["HTML Attributes","Attributes provide extra information to elements.","<a href='page.html' target='_blank'>Open</a>"]
+],
 
-function updateButtonStates() {
+css: [
+["CSS Introduction","CSS controls the appearance of HTML elements.","h1 {\n color: blue;\n}"],
+["Selectors","Selectors choose which elements receive styles.","p {\n color: red;\n}"],
+["Colors","CSS supports named colors, HEX, RGB and more.","h1 {\n color: #4788ff;\n}"],
+["Backgrounds","Change the background of an element.","body {\n background-color: black;\n}"],
+["Font Size","Control the size of text.","p {\n font-size: 18px;\n}"],
+["Font Family","Choose the font used by your website.","body {\n font-family: Arial;\n}"],
+["Text Alignment","Align text to the left, center or right.","h1 {\n text-align: center;\n}"],
+["Margins","Margins create space outside an element.","div {\n margin: 20px;\n}"],
+["Padding","Padding creates space inside an element.","div {\n padding: 20px;\n}"],
+["Borders","Borders surround elements.","div {\n border: 2px solid blue;\n}"],
+["Width and Height","Set the dimensions of elements.","div {\n width: 200px;\n height: 100px;\n}"],
+["Border Radius","Round the corners of elements.","button {\n border-radius: 10px;\n}"],
+["Box Shadow","Add shadows to create depth.","div {\n box-shadow: 0 4px 10px #0005;\n}"],
+["Flexbox","Flexbox helps arrange elements in a row or column.",".container {\n display: flex;\n gap: 10px;\n}"],
+["Grid","Grid creates two-dimensional layouts.",".container {\n display: grid;\n grid-template-columns: 1fr 1fr;\n}"],
+["Hover","Change styles when a user points at an element.","button:hover {\n background: blue;\n}"],
+["Transitions","Animate changes smoothly.","button {\n transition: 0.3s;\n}"],
+["Position","Control how elements are positioned.","div {\n position: relative;\n}"],
+["Responsive Design","Media queries adapt layouts to screen sizes.","@media(max-width:600px) {\n body { font-size: 14px; }\n}"],
+["CSS Variables","Variables store reusable CSS values.",":root {\n --main: blue;\n}\nh1 { color: var(--main); }"]
+],
 
-    let buttons = document.querySelectorAll(".practice .question button");
+java: [
+["Java Introduction","Java is a general-purpose programming language.","public class Main {\n public static void main(String[] args) {\n  System.out.println(\"Hello\");\n }\n}"],
+["Variables","Variables store information.","int age = 16;"],
+["Data Types","Java includes int, double, boolean and String.","int number = 10;\ndouble price = 5.5;\nboolean active = true;\nString name = \"Ali\";"],
+["Printing","Print information using System.out.println.","System.out.println(\"Hello World\");"],
+["Arithmetic","Use operators to calculate values.","int result = 10 + 5;"],
+["Strings","Strings store text.","String name = \"Ahmed\";"],
+["If Statements","If statements make decisions.","if (age >= 18) {\n System.out.println(\"Adult\");\n}"],
+["Else","Else handles the alternative condition.","if (age >= 18) {\n System.out.println(\"Adult\");\n} else {\n System.out.println(\"Young\");\n}"],
+["Else If","Check several conditions.","if (x > 0) {\n System.out.println(\"Positive\");\n} else if (x < 0) {\n System.out.println(\"Negative\");\n}"],
+["For Loops","Repeat code a set number of times.","for(int i=0;i<5;i++) {\n System.out.println(i);\n}"],
+["While Loops","Repeat code while a condition is true.","while(x < 5) {\n x++;\n}"],
+["Arrays","Arrays store multiple values.","int[] numbers = {1,2,3};"],
+["Array Index","Access array elements using their index.","int first = numbers[0];"],
+["Methods","Methods organize reusable code.","static void greet() {\n System.out.println(\"Hello\");\n}"],
+["Method Parameters","Parameters allow methods to receive information.","static void greet(String name) {\n System.out.println(name);\n}"],
+["Return Values","Methods can return values.","static int add(int a,int b) {\n return a+b;\n}"],
+["Classes","Classes are blueprints for objects.","class Car {\n String color;\n}"],
+["Objects","Objects are created from classes.","Car myCar = new Car();"],
+["Constructors","Constructors initialize new objects.","class Car {\n Car() {\n  System.out.println(\"Created\");\n }\n}"],
+["Comments","Comments explain Java code.","// This is a comment"]
+]
 
-    buttons.forEach((button, index) => {
+};
 
-        if (completed[index]) {
-            button.innerText = "Completed ✓";
-            button.style.background = "#159957";
-        } else {
-            button.innerText = "Done ✓";
-            button.style.background = "#3155a5";
-        }
+
+// SHOW LESSONS
+
+let currentLanguage = "";
+
+function openLessons(language) {
+
+    currentLanguage = language;
+
+    showPage("lessons");
+
+    document.getElementById("lessonTitle").innerText =
+        language.toUpperCase() + " BASICS";
+
+    let grid = document.getElementById("topicGrid");
+
+    grid.innerHTML = "";
+
+    lessons[language].forEach((topic,index) => {
+
+        let card = document.createElement("button");
+
+        card.className = "topic";
+
+        card.innerHTML =
+            `<small>LESSON ${index+1}</small>
+             <h3>${topic[0]}</h3>`;
+
+        card.onclick = () => openTopic(index);
+
+        grid.appendChild(card);
 
     });
 }
 
-// QUIZ SYSTEM
+function openTopic(index) {
 
-function checkQuiz() {
+    let topic = lessons[currentLanguage][index];
 
-    let answers = {
-        q1: "a",
-        q2: "b",
-        q3: "c",
-        q4: "a",
-        q5: "b"
-    };
+    document.getElementById("modalTitle").innerText =
+        (index+1) + ". " + topic[0];
 
-    let score = 0;
-    let unanswered = 0;
+    document.getElementById("modalDescription").innerText =
+        topic[1];
 
-    for (let question in answers) {
+    document.getElementById("modalCode").textContent =
+        topic[2];
 
-        let selected = document.querySelector(
-            'input[name="' + question + '"]:checked'
-        );
+    document.getElementById("topicOverlay").classList.add("active");
+}
 
-        if (!selected) {
-            unanswered++;
-        } else if (selected.value === answers[question]) {
-            score++;
+function closeTopic() {
+    document.getElementById("topicOverlay").classList.remove("active");
+}
+
+
+// QUESTION BANK
+// Starter question bank: 10 questions per language.
+// Mixed tests draw from all three categories.
+// Expand each bank to 30 distinct questions in the next content pass.
+
+const questionBank = {
+
+html: [
+["What does HTML stand for?",["HyperText Markup Language","HighText Machine Language","Home Tool Markup"],0,"HTML stands for HyperText Markup Language."],
+["Which tag creates the largest standard heading?",["<p>","<h1>","<h6>"],1,"h1 is the highest-level heading."],
+["Which tag creates a paragraph?",["<p>","<div>","<br>"],0,"The p element represents a paragraph."],
+["Which tag creates a hyperlink?",["<img>","<a>","<link>"],1,"The a element creates links."],
+["Which attribute specifies an image source?",["href","alt","src"],2,"src contains the image location."],
+["Which tag creates an unordered list?",["<ol>","<ul>","<li>"],1,"ul creates a bulleted list."],
+["Which tag creates a line break?",["<br>","<hr>","<p>"],0,"br starts a new line."],
+["Which tag creates a button?",["<input>","<button>","<click>"],1,"button creates a clickable button."],
+["What does HTML provide?",["Website structure","Website styling","Database storage"],0,"HTML defines the structure and content."],
+["Which declaration identifies an HTML5 document?",["<html5>","<!DOCTYPE html>","<doctype>"],1,"DOCTYPE tells the browser to use HTML5."]
+],
+
+css: [
+["What does CSS stand for?",["Computer Style System","Cascading Style Sheets","Creative Style Syntax"],1,"CSS means Cascading Style Sheets."],
+["Which property changes text color?",["font","color","background"],1,"color changes text color."],
+["Which property changes the background?",["background-color","text-align","margin"],0,"background-color sets an element's background."],
+["Which property changes text size?",["font-size","text-style","size"],0,"font-size controls text size."],
+["Which property adds space inside an element?",["margin","padding","border"],1,"Padding is internal spacing."],
+["Which property rounds corners?",["border-radius","corner","round"],0,"border-radius rounds corners."],
+["Which selector targets a class?",["#name",".name","name()"],1,"A dot selects a class."],
+["Which selector targets an ID?",[".header","#header","*header"],1,"A hash selects an ID."],
+["Which property creates a flex layout?",["display: flex","position: flex","flex: display"],0,"display:flex enables Flexbox."],
+["What does :hover do?",["Adds an image","Responds to pointer hover","Deletes an element"],1,":hover applies styles while an element is hovered."]
+],
+
+java: [
+["Which keyword declares an integer?",["String","int","double"],1,"int stores whole numbers."],
+["Which command prints text?",["System.out.println()","console.log()","printHTML()"],0,"System.out.println prints a line in Java."],
+["Which type stores text?",["int","boolean","String"],2,"String stores text."],
+["Which type stores true or false?",["boolean","double","char[]"],0,"boolean stores true or false."],
+["Which symbol ends most Java statements?",[".",":",";"],2,"Most Java statements end with a semicolon."],
+["Which keyword checks a condition?",["if","repeat","check"],0,"if executes code when a condition is true."],
+["Which loop is useful for counting?",["for","class","return"],0,"for loops commonly repeat a known number of times."],
+["Which symbol checks equality for primitive values?",["=","==","!="],1,"== compares values; = assigns."],
+["Which keyword creates a class?",["object","class","newclass"],1,"class declares a Java class."],
+["Which method is the usual Java program entry point?",["start()","main()","runProgram()"],1,"main is the standard entry point."]
+]
+
+};
+
+
+// MIXED TESTS: 10 from each language
+
+questionBank.mix = [
+    ...questionBank.html,
+    ...questionBank.css,
+    ...questionBank.java
+];
+
+
+// TEST ENGINE
+
+let testQuestions = [];
+let currentQuestion = 0;
+let userAnswers = [];
+let timerInterval = null;
+let secondsLeft = 30 * 60;
+let activeTest = "";
+
+function startTest(category) {
+
+    activeTest = category;
+
+    testQuestions = [...questionBank[category]]
+        .sort(() => Math.random() - 0.5);
+
+    currentQuestion = 0;
+    userAnswers = new Array(testQuestions.length).fill(null);
+
+    secondsLeft = 30 * 60;
+
+    document.getElementById("testCategory").innerText =
+        category.toUpperCase() + " CHALLENGE";
+
+    showPage("challengePage");
+
+    renderQuestion();
+
+    clearInterval(timerInterval);
+
+    updateTimer();
+
+    timerInterval = setInterval(() => {
+
+        secondsLeft--;
+
+        updateTimer();
+
+        if(secondsLeft <= 0) {
+            submitTest();
         }
 
+    },1000);
+}
+
+function updateTimer() {
+
+    let mins = Math.floor(secondsLeft / 60);
+    let secs = secondsLeft % 60;
+
+    document.getElementById("timer").innerText =
+        String(mins).padStart(2,"0") + ":" +
+        String(secs).padStart(2,"0");
+}
+
+function renderQuestion() {
+
+    let q = testQuestions[currentQuestion];
+
+    document.getElementById("questionNumber").innerText =
+        "QUESTION " + (currentQuestion+1) +
+        " / " + testQuestions.length;
+
+    document.getElementById("questionText").innerText = q[0];
+
+    let answers = document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    q[1].forEach((answer,index) => {
+
+        let button = document.createElement("button");
+
+        button.className = "answer";
+
+        button.innerText =
+            String.fromCharCode(65+index) + ". " + answer;
+
+        if(userAnswers[currentQuestion] === index) {
+            button.classList.add("selected");
+        }
+
+        button.onclick = () => {
+
+            userAnswers[currentQuestion] = index;
+
+            renderQuestion();
+
+        };
+
+        answers.appendChild(button);
+
+    });
+
+    document.getElementById("nextButton").innerText =
+        currentQuestion === testQuestions.length-1
+        ? "Finish →"
+        : "Next →";
+}
+
+function nextQuestion() {
+
+    if(currentQuestion < testQuestions.length-1) {
+
+        currentQuestion++;
+
+        renderQuestion();
+
+    } else {
+
+        submitTest();
+
     }
+}
 
-    let result = document.getElementById("result");
+function previousQuestion() {
 
-    if (unanswered > 0) {
-        result.innerText =
-            "Please answer all questions first!";
-        result.style.color = "#d97706";
+    if(currentQuestion > 0) {
+
+        currentQuestion--;
+
+        renderQuestion();
+
+    }
+}
+
+function leaveTest() {
+
+    if(confirm("Exit this test? Your current answers will be lost.")) {
+
+        clearInterval(timerInterval);
+
+        showPage("testing");
+
+    }
+}
+
+function submitTest() {
+
+    if(!timerInterval && !document.getElementById("challengePage").classList.contains("active")) {
         return;
     }
 
-    result.innerText =
-        "Your score: " + score + " / 5";
+    clearInterval(timerInterval);
+    timerInterval = null;
 
-    result.innerText += score === 5
-        ? " - Excellent! 🎉"
-        : score >= 3
-        ? " - Good job! Keep practicing!"
-        : " - Keep learning and try again!";
+    let score = 0;
 
-    result.style.color = "#159957";
+    testQuestions.forEach((q,index) => {
+
+        if(userAnswers[index] === q[2]) {
+            score++;
+        }
+
+    });
+
+    let result = {
+        category: activeTest,
+        score: score,
+        total: testQuestions.length,
+        date: new Date().toLocaleString(),
+        questions: testQuestions.map((q,index) => ({
+            question: q[0],
+            options: q[1],
+            correct: q[2],
+            explanation: q[3],
+            selected: userAnswers[index]
+        }))
+    };
+
+    let history = JSON.parse(
+        localStorage.getItem("testHistory") || "[]"
+    );
+
+    history.unshift(result);
+
+    localStorage.setItem("testHistory",JSON.stringify(history));
+
+    document.getElementById("finalScore").innerText =
+        score + "/" + testQuestions.length;
+
+    let percent = Math.round(score/testQuestions.length*100);
+
+    document.getElementById("resultMessage").innerText =
+        percent >= 80 ? "Excellent performance! 🏆" :
+        percent >= 50 ? "Good effort! Keep learning." :
+        "Keep practicing. You can improve!";
+
+    let review = document.getElementById("review");
+
+    review.innerHTML = "";
+
+    result.questions.forEach((q,index) => {
+
+        let isCorrect = q.selected === q.correct;
+
+        let item = document.createElement("div");
+
+        item.className = "review-item " +
+            (isCorrect ? "correct" : "wrong");
+
+        let title = document.createElement("h3");
+        title.innerText =
+            (isCorrect ? "✓ " : "✗ ") +
+            (index+1) + ". " + q.question;
+
+        let answer = document.createElement("p");
+        answer.style.marginTop = "10px";
+        answer.innerText =
+            "Your answer: " +
+            (q.selected === null ? "Not answered" : q.options[q.selected]);
+
+        let correct = document.createElement("p");
+        correct.innerText =
+            "Correct answer: " + q.options[q.correct];
+
+        let explanation = document.createElement("p");
+        explanation.innerText = "Why: " + q.explanation;
+
+        item.append(title,answer,correct,explanation);
+
+        review.appendChild(item);
+
+    });
+
+    showPage("results");
 }
 
-function resetQuiz() {
-    document.getElementById("result").innerText = "";
+
+// HISTORY
+
+function renderHistory() {
+
+    let history = JSON.parse(
+        localStorage.getItem("testHistory") || "[]"
+    );
+
+    let list = document.getElementById("historyList");
+
+    list.innerHTML = "";
+
+    if(history.length === 0) {
+        list.innerHTML = '<p class="empty">No tests completed yet.</p>';
+        return;
+    }
+
+    history.forEach(test => {
+
+        let div = document.createElement("div");
+
+        div.className = "history-item";
+
+        let heading = document.createElement("h3");
+        heading.innerText = test.category.toUpperCase() + " TEST";
+
+        let score = document.createElement("p");
+        score.innerText = "Score: " + test.score + "/" + test.total;
+
+        let date = document.createElement("small");
+        date.style.color = "#9ba9c1";
+        date.innerText = test.date;
+
+        div.append(heading,score,date);
+
+        list.appendChild(div);
+
+    });
 }
 
-// LOAD SAVED PROGRESS
 
-updateButtonStates();
-updateProgress();
+// CODE PLAYGROUND
+
+function changeLanguage() {
+
+    let language = document.getElementById("language").value;
+
+    let editor = document.getElementById("codeEditor");
+
+    const examples = {
+        html: '<h1>Hello World!</h1>\n<p>My first website.</p>',
+        css: 'body {\n    background: #18243a;\n    color: white;\n    font-family: Arial;\n}\n\nh1 {\n    color: #4788ff;\n}',
+        java: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello World!");\n    }\n}'
+    };
+
+    editor.value = examples[language];
+
+    document.getElementById("output").style.display = "none";
+    document.getElementById("javaMessage").style.display = "none";
+}
+
+function runCode() {
+
+    let language = document.getElementById("language").value;
+
+    let code = document.getElementById("codeEditor").value;
+
+    let output = document.getElementById("output");
+
+    let javaMessage = document.getElementById("javaMessage");
+
+    if(language === "java") {
+
+        output.style.display = "none";
+        javaMessage.style.display = "block";
+
+        return;
+
+    }
+
+    javaMessage.style.display = "none";
+
+    output.style.display = "block";
+
+    let html = "";
+
+    if(language === "html") {
+
+        html = code;
+
+    } else if(language === "css") {
+
+        html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>${code}</style>
+        </head>
+        <body>
+            <h1>Hello World!</h1>
+            <p>This is your CSS preview.</p>
+            <button>Example Button</button>
+        </body>
+        </html>`;
+
+    }
+
+    output.srcdoc = html;
+
+}
+
+
+// INITIALIZE
+
+changeLanguage();
 
 </script>
+
+<footer>
+    CODE ACADEMY © 2026<br>
+    Learn Today. Build Tomorrow.
+</footer>
 
 </body>
 </html>
