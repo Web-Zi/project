@@ -2,135 +2,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Academy - Learn Programming</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Academy</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6fa;
-            color: #222;
-            line-height: 1.7;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #222;
+    line-height: 1.7;
+}
 
-        header {
-            background: #202b45;
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-        }
+header {
+    background: #202b45;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
 
-        header h1 {
-            font-size: 32px;
-        }
+header h1 {
+    font-size: 34px;
+}
 
-        nav {
-            background: #344563;
-            padding: 15px;
-            text-align: center;
-        }
+nav {
+    background: #344563;
+    padding: 15px;
+    text-align: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-weight: bold;
+}
 
-        nav a:hover {
-            color: #70d6ff;
-        }
+nav a:hover {
+    color: #70d6ff;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 15px;
-        }
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 15px;
+}
 
-        .lesson {
-            background: white;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #00000010;
-        }
+.lesson, .practice, .quiz {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #00000010;
+}
 
-        .lesson h2 {
-            color: #3155a5;
-            margin-bottom: 12px;
-        }
+h2 {
+    color: #3155a5;
+    margin-bottom: 15px;
+}
 
-        pre {
-            background: #202b45;
-            color: #8be9fd;
-            padding: 18px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-top: 15px;
-        }
+h3 {
+    margin-top: 15px;
+}
 
-        .example {
-            background: #eaf1ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
+pre {
+    background: #202b45;
+    color: #8be9fd;
+    padding: 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
-        footer {
-            background: #202b45;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
+.example {
+    background: #eaf1ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
 
-        @media(max-width: 600px) {
-            header h1 {
-                font-size: 25px;
-            }
+button {
+    background: #3155a5;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-size: 15px;
+}
 
-            nav a {
-                display: inline-block;
-            }
-        }
-    </style>
+button:hover {
+    background: #203c7d;
+}
+
+.done {
+    background: #159957;
+}
+
+.done:hover {
+    background: #107743;
+}
+
+textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: 12px;
+    margin-top: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.progress {
+    background: #ddd;
+    height: 14px;
+    border-radius: 20px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #159957;
+    transition: width 0.3s;
+}
+
+.question {
+    background: #f4f6fa;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.question label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+footer {
+    background: #202b45;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media(max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    nav a {
+        display: inline-block;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Code Academy</h1>
-        <p>Learn Programming From Zero!</p>
-    </header>
+<header>
+    <h1>Code Academy</h1>
+    <p>Learn Programming From Zero!</p>
+</header>
 
-    <nav>
-        <a href="#html">HTML</a>
-        <a href="#css">CSS</a>
-        <a href="#java">Java</a>
-    </nav>
+<nav>
+    <a href="#html">HTML</a>
+    <a href="#css">CSS</a>
+    <a href="#java">Java</a>
+    <a href="#practice">Practice</a>
+    <a href="#quiz">Quizzes</a>
+</nav>
 
-    <div class="container">
+<div class="container">
 
-        <!-- HTML LESSON -->
-        <section class="lesson" id="html">
+<!-- HTML -->
 
-            <h2>1. What is HTML?</h2>
+<section class="lesson" id="html">
+    <h2>1. What is HTML?</h2>
 
-            <p>
-                HTML stands for HyperText Markup Language.
-                It is used to create the structure of websites.
-            </p>
+    <p>
+        HTML stands for HyperText Markup Language.
+        It creates the structure of websites.
+    </p>
 
-            <h3>Basic HTML Example:</h3>
+    <h3>Example:</h3>
 
-            <pre>
+<pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -139,37 +212,34 @@
 
 &lt;body&gt;
     &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;p&gt;This is my first website.&lt;/p&gt;
+    &lt;p&gt;My first website.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-            </pre>
+</pre>
 
-            <div class="example">
-                <h3>Important HTML Tags</h3>
-                <p><b>&lt;h1&gt;</b> : Creates a heading.</p>
-                <p><b>&lt;p&gt;</b> : Creates a paragraph.</p>
-                <p><b>&lt;img&gt;</b> : Adds an image.</p>
-                <p><b>&lt;a&gt;</b> : Creates a link.</p>
-                <p><b>&lt;button&gt;</b> : Creates a button.</p>
-            </div>
+    <div class="example">
+        <h3>Important HTML Tags</h3>
+        <p>&lt;h1&gt; = Heading</p>
+        <p>&lt;p&gt; = Paragraph</p>
+        <p>&lt;img&gt; = Image</p>
+        <p>&lt;a&gt; = Link</p>
+        <p>&lt;button&gt; = Button</p>
+    </div>
+</section>
 
-        </section>
+<!-- CSS -->
 
+<section class="lesson" id="css">
+    <h2>2. What is CSS?</h2>
 
-        <!-- CSS LESSON -->
-        <section class="lesson" id="css">
+    <p>
+        CSS stands for Cascading Style Sheets.
+        It controls the appearance of websites.
+    </p>
 
-            <h2>2. What is CSS?</h2>
+    <h3>Example:</h3>
 
-            <p>
-                CSS stands for Cascading Style Sheets.
-                It is used to make websites look beautiful.
-                You can change colors, sizes, backgrounds and layouts.
-            </p>
-
-            <h3>Basic CSS Example:</h3>
-
-            <pre>
+<pre>
 body {
     background-color: lightblue;
     font-family: Arial;
@@ -179,39 +249,32 @@ h1 {
     color: blue;
     text-align: center;
 }
+</pre>
 
-p {
-    font-size: 18px;
-}
-            </pre>
+    <div class="example">
+        <h3>Important CSS Properties</h3>
+        <p>color = Text color</p>
+        <p>background-color = Background color</p>
+        <p>font-size = Text size</p>
+        <p>margin = Outside spacing</p>
+        <p>padding = Inside spacing</p>
+        <p>border = Border around an element</p>
+    </div>
+</section>
 
-            <div class="example">
-                <h3>Important CSS Properties</h3>
-                <p><b>color</b> : Changes text color.</p>
-                <p><b>background-color</b> : Changes background.</p>
-                <p><b>font-size</b> : Changes text size.</p>
-                <p><b>margin</b> : Adds outside spacing.</p>
-                <p><b>padding</b> : Adds inside spacing.</p>
-                <p><b>border</b> : Adds a border.</p>
-            </div>
+<!-- JAVA -->
 
-        </section>
+<section class="lesson" id="java">
+    <h2>3. What is Java?</h2>
 
+    <p>
+        Java is a programming language used to
+        create applications and software.
+    </p>
 
-        <!-- JAVA LESSON -->
-        <section class="lesson" id="java">
+    <h3>Example:</h3>
 
-            <h2>3. What is Java?</h2>
-
-            <p>
-                Java is a programming language used to create
-                applications, desktop programs and backend systems.
-                It is different from JavaScript.
-            </p>
-
-            <h3>Basic Java Example:</h3>
-
-            <pre>
+<pre>
 public class Main {
 
     public static void main(String[] args) {
@@ -221,34 +284,361 @@ public class Main {
     }
 
 }
-            </pre>
+</pre>
 
-            <div class="example">
-                <h3>Important Java Concepts</h3>
-                <p><b>int</b> : Stores whole numbers.</p>
-                <p><b>double</b> : Stores decimal numbers.</p>
-                <p><b>String</b> : Stores text.</p>
-                <p><b>if</b> : Makes decisions.</p>
-                <p><b>for</b> : Repeats instructions.</p>
-                <p><b>System.out.println()</b> : Prints text.</p>
-            </div>
+    <div class="example">
+        <h3>Important Java Concepts</h3>
+        <p>int = Whole numbers</p>
+        <p>double = Decimal numbers</p>
+        <p>String = Text</p>
+        <p>if = Conditions</p>
+        <p>for = Loops</p>
+        <p>System.out.println() = Print text</p>
+    </div>
+</section>
 
-        </section>
+<!-- PRACTICE -->
 
-        <section class="lesson">
-            <h2>Congratulations!</h2>
-            <p>
-                You have learned the basics of HTML, CSS and Java.
-                Keep practicing and start building your own projects!
-            </p>
-        </section>
+<section class="practice" id="practice">
 
+    <h2>4. Practice Exercises</h2>
+
+    <p>
+        Complete the following exercises.
+        You can write your solution in the text boxes.
+        When you finish, click Done!
+    </p>
+
+    <h3>Your Progress</h3>
+
+    <p id="progressText">0 / 6 exercises completed</p>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <footer>
-        <p>Code Academy © 2026</p>
-        <p>Learn Today, Build Tomorrow.</p>
-    </footer>
+    <!-- HTML PRACTICE -->
+
+    <div class="question">
+        <h3>Exercise 1 - HTML</h3>
+        <p>Create a heading that says "My First Website".</p>
+
+        <textarea placeholder="Write your HTML code here..."></textarea>
+
+        <button class="done" onclick="completeTask(0, this)">
+            Done ✓
+        </button>
+    </div>
+
+    <div class="question">
+        <h3>Exercise 2 - HTML</h3>
+        <p>Create a paragraph that says "I love programming".</p>
+
+        <textarea placeholder="Write your HTML code here..."></textarea>
+
+        <button class="done" onclick="completeTask(1, this)">
+            Done ✓
+        </button>
+    </div>
+
+    <!-- CSS PRACTICE -->
+
+    <div class="question">
+        <h3>Exercise 3 - CSS</h3>
+        <p>Change the background color of a page to black.</p>
+
+        <textarea placeholder="Write your CSS code here..."></textarea>
+
+        <button class="done" onclick="completeTask(2, this)">
+            Done ✓
+        </button>
+    </div>
+
+    <div class="question">
+        <h3>Exercise 4 - CSS</h3>
+        <p>Make an h1 heading red and center aligned.</p>
+
+        <textarea placeholder="Write your CSS code here..."></textarea>
+
+        <button class="done" onclick="completeTask(3, this)">
+            Done ✓
+        </button>
+    </div>
+
+    <!-- JAVA PRACTICE -->
+
+    <div class="question">
+        <h3>Exercise 5 - Java</h3>
+        <p>Write a Java command that prints "Hello Student".</p>
+
+        <textarea placeholder="Write your Java code here..."></textarea>
+
+        <button class="done" onclick="completeTask(4, this)">
+            Done ✓
+        </button>
+    </div>
+
+    <div class="question">
+        <h3>Exercise 6 - Java</h3>
+        <p>Create an integer variable named age with value 16.</p>
+
+        <textarea placeholder="Write your Java code here..."></textarea>
+
+        <button class="done" onclick="completeTask(5, this)">
+            Done ✓
+        </button>
+    </div>
+
+</section>
+
+<!-- QUIZ -->
+
+<section class="quiz" id="quiz">
+
+    <h2>5. Programming Quiz</h2>
+
+    <p>Test what you have learned!</p>
+
+    <form id="quizForm">
+
+        <div class="question">
+            <h3>Question 1</h3>
+            <p>What does HTML do?</p>
+
+            <label>
+                <input type="radio" name="q1" value="a">
+                Creates website structure
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="b">
+                Styles websites
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="c">
+                Edits photos
+            </label>
+        </div>
+
+        <div class="question">
+            <h3>Question 2</h3>
+            <p>Which language is used to style websites?</p>
+
+            <label>
+                <input type="radio" name="q2" value="a">
+                Java
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="b">
+                CSS
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="c">
+                HTML
+            </label>
+        </div>
+
+        <div class="question">
+            <h3>Question 3</h3>
+            <p>Which command prints text in Java?</p>
+
+            <label>
+                <input type="radio" name="q3" value="a">
+                print.text()
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="b">
+                console.log()
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="c">
+                System.out.println()
+            </label>
+        </div>
+
+        <div class="question">
+            <h3>Question 4</h3>
+            <p>Which HTML tag creates a paragraph?</p>
+
+            <label>
+                <input type="radio" name="q4" value="a">
+                &lt;p&gt;
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="b">
+                &lt;h1&gt;
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="c">
+                &lt;img&gt;
+            </label>
+        </div>
+
+        <div class="question">
+            <h3>Question 5</h3>
+            <p>Which Java type stores whole numbers?</p>
+
+            <label>
+                <input type="radio" name="q5" value="a">
+                String
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="b">
+                int
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="c">
+                double
+            </label>
+        </div>
+
+        <button type="button" onclick="checkQuiz()">
+            Submit Quiz
+        </button>
+
+        <button type="reset" onclick="resetQuiz()">
+            Try Again
+        </button>
+
+    </form>
+
+    <div id="result"></div>
+
+</section>
+
+<section class="lesson">
+    <h2>Congratulations!</h2>
+    <p>
+        You have completed the basic lessons.
+        Keep practicing and become a better programmer!
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <p>Code Academy © 2026</p>
+    <p>Learn Today, Build Tomorrow.</p>
+</footer>
+
+<script>
+
+// PRACTICE PROGRESS
+
+let completed = JSON.parse(
+    localStorage.getItem("completedTasks") || "[false,false,false,false,false,false]"
+);
+
+function updateProgress() {
+
+    let count = completed.filter(Boolean).length;
+
+    document.getElementById("progressText").innerText =
+        count + " / 6 exercises completed";
+
+    document.getElementById("progressBar").style.width =
+        (count / 6 * 100) + "%";
+}
+
+function completeTask(index, button) {
+
+    completed[index] = !completed[index];
+
+    localStorage.setItem(
+        "completedTasks",
+        JSON.stringify(completed)
+    );
+
+    updateButtonStates();
+    updateProgress();
+}
+
+function updateButtonStates() {
+
+    let buttons = document.querySelectorAll(".practice .question button");
+
+    buttons.forEach((button, index) => {
+
+        if (completed[index]) {
+            button.innerText = "Completed ✓";
+            button.style.background = "#159957";
+        } else {
+            button.innerText = "Done ✓";
+            button.style.background = "#3155a5";
+        }
+
+    });
+}
+
+// QUIZ SYSTEM
+
+function checkQuiz() {
+
+    let answers = {
+        q1: "a",
+        q2: "b",
+        q3: "c",
+        q4: "a",
+        q5: "b"
+    };
+
+    let score = 0;
+    let unanswered = 0;
+
+    for (let question in answers) {
+
+        let selected = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (!selected) {
+            unanswered++;
+        } else if (selected.value === answers[question]) {
+            score++;
+        }
+
+    }
+
+    let result = document.getElementById("result");
+
+    if (unanswered > 0) {
+        result.innerText =
+            "Please answer all questions first!";
+        result.style.color = "#d97706";
+        return;
+    }
+
+    result.innerText =
+        "Your score: " + score + " / 5";
+
+    result.innerText += score === 5
+        ? " - Excellent! 🎉"
+        : score >= 3
+        ? " - Good job! Keep practicing!"
+        : " - Keep learning and try again!";
+
+    result.style.color = "#159957";
+}
+
+function resetQuiz() {
+    document.getElementById("result").innerText = "";
+}
+
+// LOAD SAVED PROGRESS
+
+updateButtonStates();
+updateProgress();
+
+</script>
 
 </body>
 </html>
