@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Academy - Learn Programming</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fa;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #202b45;
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        nav {
+            background: #344563;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #70d6ff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .lesson {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #00000010;
+        }
+
+        .lesson h2 {
+            color: #3155a5;
+            margin-bottom: 12px;
+        }
+
+        pre {
+            background: #202b45;
+            color: #8be9fd;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .example {
+            background: #eaf1ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #202b45;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            nav a {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Code Academy</h1>
+        <p>Learn Programming From Zero!</p>
+    </header>
+
+    <nav>
+        <a href="#html">HTML</a>
+        <a href="#css">CSS</a>
+        <a href="#java">Java</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HTML LESSON -->
+        <section class="lesson" id="html">
+
+            <h2>1. What is HTML?</h2>
+
+            <p>
+                HTML stands for HyperText Markup Language.
+                It is used to create the structure of websites.
+            </p>
+
+            <h3>Basic HTML Example:</h3>
+
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;This is my first website.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+
+            <div class="example">
+                <h3>Important HTML Tags</h3>
+                <p><b>&lt;h1&gt;</b> : Creates a heading.</p>
+                <p><b>&lt;p&gt;</b> : Creates a paragraph.</p>
+                <p><b>&lt;img&gt;</b> : Adds an image.</p>
+                <p><b>&lt;a&gt;</b> : Creates a link.</p>
+                <p><b>&lt;button&gt;</b> : Creates a button.</p>
+            </div>
+
+        </section>
+
+
+        <!-- CSS LESSON -->
+        <section class="lesson" id="css">
+
+            <h2>2. What is CSS?</h2>
+
+            <p>
+                CSS stands for Cascading Style Sheets.
+                It is used to make websites look beautiful.
+                You can change colors, sizes, backgrounds and layouts.
+            </p>
+
+            <h3>Basic CSS Example:</h3>
+
+            <pre>
+body {
+    background-color: lightblue;
+    font-family: Arial;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+}
+            </pre>
+
+            <div class="example">
+                <h3>Important CSS Properties</h3>
+                <p><b>color</b> : Changes text color.</p>
+                <p><b>background-color</b> : Changes background.</p>
+                <p><b>font-size</b> : Changes text size.</p>
+                <p><b>margin</b> : Adds outside spacing.</p>
+                <p><b>padding</b> : Adds inside spacing.</p>
+                <p><b>border</b> : Adds a border.</p>
+            </div>
+
+        </section>
+
+
+        <!-- JAVA LESSON -->
+        <section class="lesson" id="java">
+
+            <h2>3. What is Java?</h2>
+
+            <p>
+                Java is a programming language used to create
+                applications, desktop programs and backend systems.
+                It is different from JavaScript.
+            </p>
+
+            <h3>Basic Java Example:</h3>
+
+            <pre>
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Hello World!");
+
+    }
+
+}
+            </pre>
+
+            <div class="example">
+                <h3>Important Java Concepts</h3>
+                <p><b>int</b> : Stores whole numbers.</p>
+                <p><b>double</b> : Stores decimal numbers.</p>
+                <p><b>String</b> : Stores text.</p>
+                <p><b>if</b> : Makes decisions.</p>
+                <p><b>for</b> : Repeats instructions.</p>
+                <p><b>System.out.println()</b> : Prints text.</p>
+            </div>
+
+        </section>
+
+        <section class="lesson">
+            <h2>Congratulations!</h2>
+            <p>
+                You have learned the basics of HTML, CSS and Java.
+                Keep practicing and start building your own projects!
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Code Academy © 2026</p>
+        <p>Learn Today, Build Tomorrow.</p>
+    </footer>
+
+</body>
+</html>
